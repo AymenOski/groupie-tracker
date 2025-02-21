@@ -25,7 +25,7 @@ func RenderPageNotFound(w http.ResponseWriter, Status int) {
 		"Status":        Status,
 		"RollBackerror": statusMessages.Messages[Status],
 	}
-	err := tools.Temp.Execute(w, data)
+	err := tools.Temp.ExecuteTemplate(w, "RenderErrPage.html", data)
 	if err != nil {
 		http.Error(w, "Could not execute template", http.StatusInternalServerError)
 		fmt.Println("Error executing template:", err)
