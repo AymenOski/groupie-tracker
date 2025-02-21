@@ -18,4 +18,5 @@ func Route() {
 	}
 	http.HandleFunc("/static/", functions.StaticHandler)
 	http.HandleFunc("/", functions.MainPage)
+	http.HandleFunc("/more-info/", functions.MoreInfo)
 }

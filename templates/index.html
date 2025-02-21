@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artists Page</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="../static/Styles.css">
 </head>
 <body>
     <div class="container">
@@ -15,9 +15,9 @@
             {{range .}}
             <div class="artist-card">
                 <h2>{{.Name}}</h2>
-                <p><strong>Location:</strong> {{.Location}}</p>
-                <p><strong>Concert Dates:</strong> {{.ConcertDates}}</p>
-                <p><strong>Relations:</strong> {{.Relations}}</p>
+                    <a href="/more-info?id={{.Id}}">
+                        <img src="{{.Image}}" alt="Artist Image">
+                </a>
             </div>
             {{end}}
         </div>

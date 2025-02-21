@@ -7,7 +7,7 @@ import (
 	"Student/tools"
 )
 
-func RenderPageNotFound(w http.ResponseWriter, Status int) {
+func RenderErrPage(w http.ResponseWriter, Status int) {
 	w.WriteHeader(Status)
 	type msgStatus struct {
 		Messages map[int]string

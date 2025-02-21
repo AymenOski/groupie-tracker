@@ -11,7 +11,7 @@ func StaticHandler(w http.ResponseWriter, r *http.Request) {
 	path := filepath.Clean("../" + r.URL.Path)
 	rr, err := os.Stat(path)
 	if err != nil || rr.IsDir() {
-		RenderPageNotFound(w, http.StatusNotFound)
+		RenderErrPage(w, http.StatusNotFound)
 		return
 	}
 	http.ServeFile(w, r, path)
