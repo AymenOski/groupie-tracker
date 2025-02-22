@@ -48,9 +48,9 @@ GROUPIE-TRACKER/
 │   ├── Style_Func.go        # Manages styles for the website
 │
 ├── helpers/                 # Helper functions for data fetching and rendering
-│   ├── fetchingById.go      # Fetches data by artist ID
-│   ├── pageDeleted.go       # Handles deleted pages
-│   ├── renderTemplates.go   # Utility for rendering templates
+│   ├── fetching_By_Id.go      # Fetches data by artist ID
+│   ├── page_Deleted.go       # Handles deleted pages
+│   ├── render_Template.go   # Utility for rendering templates
 │
 ├── routes/
 │   ├── routes.go            # Handles routing for the application
@@ -62,9 +62,9 @@ GROUPIE-TRACKER/
 │   ├── status_Page.css      # Styling for status/error pages
 │
 ├── template/                # HTML templates
-│   ├── detailsCard.html     # Template for artist details
+│   ├── details_Card.html     # Template for artist details
 │   ├── index.html           # Homepage template
-│   ├── statusPage.html      # Error/status page template
+│   ├── status_Page.html      # Error/status page template
 │
 ├── tools/                   # Utility functions and data structures
 │   ├── Tools.go             # Contains various helper functions

@@ -2,7 +2,6 @@ package helpers
 
 import (
 	"bytes"
-	"fmt"
 	"net/http"
 
 	"groupie/tools"
@@ -10,14 +9,13 @@ import (
 
 func RenderTemplates(w http.ResponseWriter, temp string, data interface{}, status int) {
 	var buf bytes.Buffer
-	// exucut the template with buffer to chekc if there is an error in  our template
+	// execute the template with buffer to check if there is an error in our templates
 	err := tools.Tp.ExecuteTemplate(&buf, temp, data)
 	if err != nil {
-		errore := tools.ErrorInternalServerErr
 		w.WriteHeader(http.StatusInternalServerError)
-		err := tools.Tp.ExecuteTemplate(&buf, "statusPage.html", errore)
+		err := tools.Tp.ExecuteTemplate(&buf, "statusPage.html", tools.ErrorInternalServerErr)
 		if err != nil {
-			fmt.Fprintf(w, PageDeleted())
+			w.Write([]byte(PageDeleted()))
 		}
 		return
 	}

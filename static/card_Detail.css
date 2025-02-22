@@ -303,14 +303,6 @@ nav {
 
 .list {
   margin-top: 5px;
-  width: 110px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.list svg {
-  fill: white;
 }
 
 .secondMerge .relations details p {
