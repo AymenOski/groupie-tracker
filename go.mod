@@ -1,3 +1,3 @@
-module Student
+module groupie
 
-go 1.22.3
+go 1.23.2

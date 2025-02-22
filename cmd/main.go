@@ -4,17 +4,13 @@ import (
 	"fmt"
 	"net/http"
 
-	"Student/routes"
+	"groupie/routes"
 )
 
-func init() {
-	routes.Route()
-}
-
 func main() {
-	fmt.Println("Server is running at http://localhost:8080 ")
-	err := http.ListenAndServe(":8080", nil)
-	if err != nil {
-		fmt.Println("Error starting server:", err)
-	}
+	// Register handlers
+	routes.Route()
+	//  run   the server
+	fmt.Println("Server running at http://localhost:8050/")
+	http.ListenAndServe(":8050", nil)
 }
