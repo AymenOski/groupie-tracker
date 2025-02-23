@@ -44,26 +44,12 @@ func Detail_Card_Func(w http.ResponseWriter, r *http.Request) {
 	var locations *tools.Locations
 	var dates *tools.ConcertDates
 	var relations *tools.Relations
-	// declarations of urls
-	Locations_url := artistFound.Locations
-	ConcertDates_url := artistFound.ConcertDates
-	Relations_url := artistFound.Relations
+	// fetching the nested data
+	errLoc := helpers.Fetch_By_Id(artistFound.Locations, &locations)
+	errDate := helpers.Fetch_By_Id(artistFound.ConcertDates, &dates)
+	errRel := helpers.Fetch_By_Id(artistFound.Relations, &relations)
 
-	// fetch the location and put the result in the locations variable
-	er := helpers.Fetch_By_Id(Locations_url, &locations)
-	if er != nil {
-		helpers.RenderTemplates(w, "statusPage.html", tools.ErrorInternalServerErr, http.StatusInternalServerError)
-		return
-	}
-	// fetch the dates and put the result in the dates variable
-	er = helpers.Fetch_By_Id(ConcertDates_url, &dates)
-	if er != nil {
-		helpers.RenderTemplates(w, "statusPage.html", tools.ErrorInternalServerErr, http.StatusInternalServerError)
-		return
-	}
-	// fetch the relations and get the result  in the relations variable
-	er = helpers.Fetch_By_Id(Relations_url, &relations)
-	if er != nil {
+	if errLoc != nil || errDate != nil || errRel != nil {
 		helpers.RenderTemplates(w, "statusPage.html", tools.ErrorInternalServerErr, http.StatusInternalServerError)
 		return
 	}
