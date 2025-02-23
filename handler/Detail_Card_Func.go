@@ -21,23 +21,22 @@ func Detail_Card_Func(w http.ResponseWriter, r *http.Request) {
 		Dates     *tools.ConcertDates
 		Relations *tools.Relations
 	}
-	// get the id from url
+	// Get the id from the url
 	id := r.URL.Query().Get("id")
-	// to int
 	Id, err := strconv.Atoi(id)
 	if err != nil {
 		helpers.RenderTemplates(w, "statusPage.html", tools.ErrorBadReq, http.StatusBadRequest)
 		return
 	}
 	var artistFound *tools.Artists
-	// get the user
-	for i := range Artists {
-		if Id == Artists[i].Id {
-			artistFound = &Artists[i]
-			break
+	if Id > 0 && Id < 53 {
+		er := helpers.Fetch_By_Id("https://groupietrackers.herokuapp.com/api/artists/{Id}", &artistFound)
+		if er != nil {
+			helpers.RenderTemplates(w, "statusPage.html", tools.ErrorInternalServerErr, http.StatusInternalServerError)
+			return
 		}
+		artistFound = &Artists[Id-1]
 	}
-	//  to see if the user exists
 	if artistFound == nil {
 		helpers.RenderTemplates(w, "statusPage.html", tools.ErrorNotFound, http.StatusNotFound)
 		return
@@ -49,30 +48,31 @@ func Detail_Card_Func(w http.ResponseWriter, r *http.Request) {
 	Locations_url := artistFound.Locations
 	ConcertDates_url := artistFound.ConcertDates
 	Relations_url := artistFound.Relations
-	// fetch the location and get the result  in the location variable
-	errr := helpers.Fetch_By_Id(Locations_url, &locations)
-	if errr != nil {
+
+	// fetch the location and put the result in the locations variable
+	er := helpers.Fetch_By_Id(Locations_url, &locations)
+	if er != nil {
 		helpers.RenderTemplates(w, "statusPage.html", tools.ErrorInternalServerErr, http.StatusInternalServerError)
 		return
 	}
-	// fetch the dates and get the result  in the dates variable
-	errr = helpers.Fetch_By_Id(ConcertDates_url, &dates)
-	if errr != nil {
+	// fetch the dates and put the result in the dates variable
+	er = helpers.Fetch_By_Id(ConcertDates_url, &dates)
+	if er != nil {
 		helpers.RenderTemplates(w, "statusPage.html", tools.ErrorInternalServerErr, http.StatusInternalServerError)
 		return
 	}
 	// fetch the relations and get the result  in the relations variable
-	errr = helpers.Fetch_By_Id(Relations_url, &relations)
-	if errr != nil {
+	er = helpers.Fetch_By_Id(Relations_url, &relations)
+	if er != nil {
 		helpers.RenderTemplates(w, "statusPage.html", tools.ErrorInternalServerErr, http.StatusInternalServerError)
 		return
 	}
 	// set all the data  that we found into the fetching variable
-	fetching := fetchingData{
+	fetching_data := fetchingData{
 		Artist:    artistFound,
 		Locations: locations,
 		Dates:     dates,
 		Relations: relations,
 	}
-	helpers.RenderTemplates(w, "detailsCard.html", fetching, http.StatusOK)
+	helpers.RenderTemplates(w, "detailsCard.html", fetching_data, http.StatusOK)
 }
