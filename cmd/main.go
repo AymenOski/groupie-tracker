@@ -12,5 +12,9 @@ func main() {
 	routes.Route()
 	//  run   the server
 	fmt.Println("Server running at http://localhost:8080/")
-	http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		fmt.Printf("Error starting server on port 8080: %v\n", err)
+		return
+	}
 }
