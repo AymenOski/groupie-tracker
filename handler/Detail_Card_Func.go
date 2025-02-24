@@ -32,6 +32,10 @@ func Detail_Card_Func(w http.ResponseWriter, r *http.Request) {
 	}
 	var artistFound *tools.Artists
 	errFetch := helpers.Fetch_By_Id(fmt.Sprintf("https://groupietrackers.herokuapp.com/api/artists/%d", Id), &artistFound)
+	if errFetch != nil {
+		helpers.RenderTemplates(w, "statusPage.html", tools.ErrorInternalServerErr, http.StatusInternalServerError)
+		return
+	}
 	if artistFound.Id == 0 {
 		helpers.RenderTemplates(w, "statusPage.html", tools.ErrorNotFound, http.StatusNotFound)
 		return
@@ -49,7 +53,7 @@ func Detail_Card_Func(w http.ResponseWriter, r *http.Request) {
 	errLates := helpers.Fetch_By_Id(ConcertDates_url, &dates)
 	errRelation := helpers.Fetch_By_Id(Relations_url, &relations)
 
-	if errLoc != nil || errLates != nil || errRelation != nil || errFetch != nil {
+	if errLoc != nil || errLates != nil || errRelation != nil {
 		helpers.RenderTemplates(w, "statusPage.html", tools.ErrorInternalServerErr, http.StatusInternalServerError)
 		return
 	}
