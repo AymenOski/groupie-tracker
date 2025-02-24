@@ -18,7 +18,7 @@ func PageDeleted() string {
             <p>Something went wrong on our end. We're working on fixing it—please try again later!</p>
             <div class="responsive-btn">
                 <a href="/" class="fst">Home</a>
-                <a href="#" class="scd">Contact</a>
+                <a href="mailto:pidooooo07@gmail.com" class="scd">Contact</a>
             </div>
         </div>
         <div class="error-content">
@@ -27,7 +27,7 @@ func PageDeleted() string {
             <p>Something went wrong on our end. We're working on fixing it—please try again later!</p>
             <div class="buttons">
                 <a href="/" class="first">Home</a>
-                <a href="#" class="second">Contact</a>
+                <a href="mailto:pidooooo07@gmail.com" class="second">Contact</a>
             </div>
         </div>
         <div class="image">

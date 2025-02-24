@@ -6,13 +6,13 @@ import (
 )
 
 func Fetch_By_Id(url string, target interface{}) error {
-	// get the data from   url
+	// get the data from the url
 	res, err := http.Get(url)
 	if err != nil {
 		return err
 	}
 	defer res.Body.Close()
-	// decode the data and set it into the target var
+	// read the response body and decode it to the target variable
 	err = json.NewDecoder(res.Body).Decode(target)
 	if err != nil {
 		return err

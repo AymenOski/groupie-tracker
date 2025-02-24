@@ -8,9 +8,9 @@ import (
 	tools "groupie/tools"
 )
 
-var Artists []tools.Artists
 
 func Groupie_Func(w http.ResponseWriter, r *http.Request) {
+	var Artists []tools.Artists
 	// check the path
 	if r.URL.Path != "/" {
 		// execute the not found  template
