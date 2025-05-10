@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"fmt"
+	"log"
 	"net/http"
 	"text/template"
 
@@ -10,15 +10,19 @@ import (
 )
 
 func Route() {
-	var err error
+	initTemplates()
+	initRoutes()
+}
 
-	// parse all the html file from the template folder to variable Tp
+func initTemplates() {
+	var err error
 	tools.Tp, err = template.ParseGlob("template/*.html")
 	if err != nil {
-		fmt.Println("Error parsing templates: ", err)
-		return
+		log.Fatalf("Error parsing templates: %v", err)
 	}
-	// our handlers
+}
+
+func initRoutes() {
 	http.HandleFunc("/static/", handler.Style_Func)
 	http.HandleFunc("/details/", handler.Detail_Card_Func)
 	http.HandleFunc("/", handler.Groupie_Func)

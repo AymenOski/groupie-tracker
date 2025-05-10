@@ -181,9 +181,9 @@ nav {
   margin: auto;
   animation: cards-animation 1.5s ease-in-out;
   margin-top: 80px;
-  display: flex;
+  display: flex; 
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap; 
   justify-content: space-evenly;
 }
 

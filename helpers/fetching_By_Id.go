@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func Fetch_By_Id(url string, target interface{}) error {
+func Fetch_By_Id(url string, target any) error {
 	// get the data from the url
 	res, err := http.Get(url)
 	if err != nil {

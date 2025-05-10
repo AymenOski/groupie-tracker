@@ -7,7 +7,7 @@ import (
 	"groupie/tools"
 )
 
-func RenderTemplates(w http.ResponseWriter, temp string, data interface{}, status int) {
+func RenderTemplates(w http.ResponseWriter, temp string, data any, status int) {
 	var buf bytes.Buffer
 	// execute the template with buffer to check if there is an error in our templates
 	err := tools.Tp.ExecuteTemplate(&buf, temp, data)
