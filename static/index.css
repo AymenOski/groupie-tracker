@@ -36,7 +36,106 @@ body:has(#darkmode-toggle:checked) .users a {
 body:has(#darkmode-toggle:checked) .users a::after {
   background-color: black;
 }
+body:has(#darkmode-toggle:checked) .filter{
+  background-color: rgb(255, 255, 255);
+  border: #000000;
+  color: #ffffff;
+}
 
+body:has(#darkmode-toggle:checked) .creationDate,
+body:has(#darkmode-toggle:checked) .members,
+body:has(#darkmode-toggle:checked) .firstAlbum,
+body:has(#darkmode-toggle:checked) .locations{
+  border:1px solid black;
+  color: black;
+}
+
+
+/*filter session*/
+
+.dropbtn {
+  background-color: black;
+  color: black;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: #00ff26;
+}
+
+body:has(#filter:checked) .filter{ /*when this body:has(#filter:checked) is true do this css to .filter*/
+  display: flex;
+}
+
+body:has(#darkmode-toggle:checked) .dropbtn{ /*when this body:has(#filter:checked) is true do this css to .filter*/
+  background-color: #000000;
+  color: white;
+}
+
+
+.filter{
+  border-radius: 12px;
+  color: white;
+  animation: filter 1.3s ease-in-out;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  width: 72%;
+  margin-top: 100px;
+  background-color: #141414;
+  display: none;
+}
+.smon {
+  display: flex;
+  gap: 20px;
+}
+input[type="number"] {
+  margin: 5px 0;
+  height: 30px;
+  color: wheat;
+  width: 170px;
+  background-color: #3a3a3a;
+}
+.checkboxes {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-bottom: 80px;
+}
+
+.checkboxes .dv {
+  display: flex;
+  gap: 5px;
+}
+.members{
+  padding: 75px 0 0 0;
+}
+
+.datals {
+  width: 200px;
+  height: 28px;
+  background-color: #3a3a3a;
+  color: wheat;
+}
+
+.creationDate,.firstAlbum,.members,.locations{
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 20px;
+  width: 500px;
+  height: 160px;
+  border:1px solid #00ff26;
+}
+input[type="checkbox"] {
+  accent-color: #00ff26;
+  zoom: 1.3;
+}
 .mode {
   display: flex;
   align-items: center;
@@ -68,15 +167,12 @@ body:has(#darkmode-toggle:checked) .users a::after {
   transition: 0.8s;
 }
 
-input[type="checkbox"] {
+.hidd{
   width: 0;
   height: 0;
   visibility: hidden;
 }
 
-input[type="checkbox"]:checked + label {
-  background-color: #ebebeb;
-}
 
 input[type="checkbox"]:checked + label::after {
   left: 43px;
@@ -272,6 +368,17 @@ nav {
   }
 }
 
+@keyframes filter {
+  0% {
+    opacity: 0;
+    transform: translateY(-500px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes disappear {
   from {
     opacity: 0;
@@ -348,7 +455,7 @@ nav {
     display: none;
   }
   .title a {
-    font-size: 32px;
+    font-size: 23px;
   }
   .card {
     width: 220px;
@@ -361,20 +468,24 @@ nav {
   nav {
     padding: 15px 5px;
   }
-  .title a {
-    font-size: 30px;
-  }
   .card {
     width: 240px;
   }
 }
+@media (max-width: 390px) {
+  .filter{
+    width: 90%; 
+  }
+  .title a {
+    font-size: 20px;
+  }
+}
+
 @media (max-width: 320px) {
   nav {
     padding: 15px 3px;
   }
-  .title a {
-    font-size: 25px;
-  }
+
   .card {
     width: 200px;
   }
